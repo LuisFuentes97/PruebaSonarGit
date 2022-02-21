@@ -9,11 +9,10 @@ tools {
 
         stage('Build') {
             steps {
-                sh '''
-			echo build
-			checkout([$class: 'GitSCM', branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[credentialsId: 'GitHub', url: 'https://github.com/LuisFuentes97/PruebaSonarGit.git']]])
-			mvn clean install
-                    '''   
+                sh 'echo build'
+		sh 'checkout([$class: 'GitSCM', branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[credentialsId: 'GitHub', url: 'https://github.com/LuisFuentes97/PruebaSonarGit.git']]])'
+		sh 'mvn clean install'
+                     
             }
         }                        
         stage('Test') {
