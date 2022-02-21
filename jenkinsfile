@@ -1,12 +1,18 @@
 pipeline {
 
+tools {
+        // Install the Maven version configured as "M3" and add it to the path.
+        maven "Maven"
+    }
     agent any
     stages {
 
         stage('Build') {
             steps {
                 sh '''
-			echo build 
+			echo build
+			checkout([$class: 'GitSCM', branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[credentialsId: 'GitHub', url: 'https://github.com/LuisFuentes97/PruebaSonarGit.git']]])
+			 mvn clean install
                     '''   
             }
         }                        
