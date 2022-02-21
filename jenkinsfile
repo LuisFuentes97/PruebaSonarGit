@@ -18,7 +18,7 @@ tools {
         stage('Test') {
             steps {
 		sh 'echo test'
-		withSonarQubeEnv(credentialsId: 'token-sonar', instalationName: 'SonarScanner') {
+		withSonarQubeEnv(credentialsId: 'token-sonar', installationName: 'SonarScanner') {
                 sh 'mvn clean install'
 		}
             }
