@@ -11,7 +11,7 @@ tools {
             steps {
                 sh 'echo build'
 		checkout([$class: 'GitSCM', branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[credentialsId: 'GitHub', url: 'https://github.com/LuisFuentes97/PruebaSonarGit']]])
-		//sh 'mvn clean install'
+		sh 'mvn clean package'
                      
             }
         }                        
@@ -19,7 +19,7 @@ tools {
             steps {
 		sh 'echo test'
 		withSonarQubeEnv(credentialsId: 'token-sonar', installationName: 'SonarScanner') {
-                sh 'mvn clean install'
+                sh 'mvn clean test'
 		}
             }
         }
