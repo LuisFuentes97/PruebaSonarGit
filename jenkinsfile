@@ -19,7 +19,7 @@ tools {
             steps {
 		sh 'echo test'
 		withSonarQubeEnv(credentialsId: 'token-sonar', installationName: 'SonarScanner') {
-                sh 'mvn sonar-sonar'
+                sh 'mvn clean test'
 		}
             }
         }
